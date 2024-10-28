@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from'cors';
 import userRoutes from './routes/userRoutes.js'
 dotenv.config();
 import cookieParser from 'cookie-parser';
@@ -14,6 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:3000', 
+    credentials: true,
+}));
 
 app.use('/api/users',userRoutes);
 
